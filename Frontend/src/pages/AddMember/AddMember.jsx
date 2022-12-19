@@ -51,14 +51,14 @@ const AddBook = () => {
   const isInvalid = user.name === "" || user.email === "" || user.age === 0 || user.balance === 0;
 
   const getSingleBook = async () =>{
-    const singleBook = await axios.get(`http://localhost:1337/api/users/getUser/${id}`)
+    const singleBook = await axios.get(`https://frappeprojectbackend.onrender.com/api/users/getUser/${id}`)
     setUser({...singleBook.data})
   }
 
   const formSubmitAdd = async (event) => {
     event.preventDefault()
     try {
-      const data = await axios.post("http://localhost:1337/api/users/addUser",{
+      const data = await axios.post("https://frappeprojectbackend.onrender.com/api/users/addUser",{
         user:user
       })
       navigate(-1)
@@ -73,7 +73,7 @@ const AddBook = () => {
 
     event.preventDefault()
     try {
-      const data = await axios.patch(`http://localhost:1337/api/users/getUser/${id}`,{
+      const data = await axios.patch(`https://frappeprojectbackend.onrender.com/api/users/getUser/${id}`,{
         user:user
       })
       navigate(-1)

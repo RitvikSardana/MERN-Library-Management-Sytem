@@ -28,13 +28,15 @@ const Books = () => {
   const navigate = useNavigate();
 
   const getBooks = async () => {
-    const data = await axios.get("http://localhost:1337/api/books/getBooks");
+    const data = await axios.get(
+      "https://frappeprojectbackend.onrender.com/api/books/getBooks"
+    );
     setBooks(data.data);
   };
 
   const getIssuedBooks = async () => {
     const data = await axios.get(
-      "http://localhost:1337/api/books/getIssuedBook"
+      "https://frappeprojectbackend.onrender.com/api/books/getIssuedBook"
     );
     setIssuedBooks(data.data);
   };
@@ -45,9 +47,10 @@ const Books = () => {
   }, []);
 
   const deleteBook = async () => {
+    console.log(activeBook.id);
     try {
-      const data = axios.delete(
-        `http://localhost:1337/api/books/getBook/${activeBook.id}`
+      const data = await axios.delete(
+        `https://frappeprojectbackend.onrender.com/api/books/getBook/${activeBook.id}`
       );
       setOpenModal(false);
       setActiveBook("");
@@ -186,36 +189,12 @@ const Books = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-
-            <Modal open={openModal} onClose={(e) => setOpenModal(false)}>
-              <Card className="conf_modal">
-                <CardContent>
-                  <h2>Are you sure?</h2>
-                </CardContent>
-                <CardActions className="conf_modal_actions">
-                  <Button
-                    variant="contained"
-                    onClick={() => setOpenModal(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={deleteBook}
-                  >
-                    Delete
-                  </Button>
-                </CardActions>
-              </Card>
-            </Modal>
           </div>
         </>
-
       ) : (
         <div className="noBooks">
-        <Typography variant="h6">No books issued!</Typography>
-      </div>
+          <Typography variant="h6">No books issued!</Typography>
+        </div>
       )}
     </>
   );

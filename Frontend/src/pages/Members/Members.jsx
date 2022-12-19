@@ -27,7 +27,7 @@ const Members = () => {
   const navigate = useNavigate();
 
   const getUsers = async () => {
-    const data = await axios.get("http://localhost:1337/api/users/getUsers");
+    const data = await axios.get("https://frappeprojectbackend.onrender.com/api/users/getUsers");
     setUsers(data.data);
   };
 
@@ -37,8 +37,8 @@ const Members = () => {
 
   const deleteUser = async () => {
     try {
-      const data = axios.delete(
-        `http://localhost:1337/api/users/getUser/${activeUser._id}`
+      const data = await axios.delete(
+        `https://frappeprojectbackend.onrender.com/api/users/getUser/${activeUser._id}`
       );
       setOpenModal(false);
       setActiveUser("");
@@ -51,7 +51,7 @@ const Members = () => {
   const handleReturnBook = async (user) => {
     console.log(user);
     const data = await axios.patch(
-      "http://localhost:1337/api/users/returnBook",
+      "https://frappeprojectbackend.onrender.com/api/users/returnBook",
       {
         user,
       }

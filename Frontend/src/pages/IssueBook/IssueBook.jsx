@@ -60,7 +60,7 @@ const IssueBook = () => {
     book.balance === 0;
 
   const getBooks = async () => {
-    const data = await axios.get("http://localhost:1337/api/books/getBooks");
+    const data = await axios.get("https://frappeprojectbackend.onrender.com/api/books/getBooks");
     setBooks(data.data);
   };
 
@@ -75,7 +75,7 @@ const IssueBook = () => {
       )[0].id;
       // let
       const data = await axios.patch(
-        "http://localhost:1337/api/users/issuebook",
+        "https://frappeprojectbackend.onrender.com/api/users/issuebook",
         {
           id,
           bookId,

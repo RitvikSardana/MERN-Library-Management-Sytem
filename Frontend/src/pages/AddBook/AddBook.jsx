@@ -51,7 +51,7 @@ const AddBook = () => {
 
   const getSingleBook = async () => {
     const singleBook = await axios.get(
-      `http://localhost:1337/api/books/getBook/${id}`
+      `https://frappeprojectbackend.onrender.com/api/books/getBook/${id}`
     );
     setBook({ ...singleBook.data, name: singleBook.data.title });
   };
@@ -63,7 +63,7 @@ const AddBook = () => {
   const formSubmitAdd = async (event) => {
     event.preventDefault();
     try {
-      const data = await axios.post("http://localhost:1337/api/books/addBook", {
+      const data = await axios.post("https://frappeprojectbackend.onrender.com/api/books/addBook", {
         book,
       });
       navigate("/");
@@ -76,7 +76,7 @@ const AddBook = () => {
     event.preventDefault();
     try {
       const data = await axios.patch(
-        `http://localhost:1337/api/books/getBook/${id}`,
+        `https://frappeprojectbackend.onrender.com/api/books/getBook/${id}`,
         {
           book,
         }
