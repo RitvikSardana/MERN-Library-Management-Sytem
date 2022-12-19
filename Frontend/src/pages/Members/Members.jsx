@@ -58,7 +58,7 @@ const Members = () => {
     );
     if (data.data === "ok") {
       alert("Succesfully Returned the Book");
-      navigate(0);
+      navigate(-1);
     }
   };
   
