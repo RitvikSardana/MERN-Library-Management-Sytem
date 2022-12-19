@@ -34,7 +34,7 @@ const AddBook = () => {
   const updateBookField = (event) => {
     const field = event.target;
     setUser((user) => ({ ...user, [field.name]: field.value }));
-  };c
+  };
 
   const validateForm = (event) => {
     const { name, value } = event.target;
