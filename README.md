@@ -90,7 +90,7 @@
 
 ![image](https://user-images.githubusercontent.com/65544983/208450988-8c237d5f-a747-4361-b001-90a9d1ab5c0f.png)
  
- **On Succesfull Deletion the user gets this message on their screen**
+ **On returning the book, user gets this message on their screen**
  
  
  ### Issue Book with outstanding more than ₹500
