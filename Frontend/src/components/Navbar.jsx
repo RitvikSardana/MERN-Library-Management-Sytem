@@ -118,13 +118,13 @@ export default function PrimarySearchAppBar() {
         </MenuItem>
       </Link>
 
-      <Link to='/members'>
-      <MenuItem>
-        <IconButton size="large" color="inherit">
-          <GroupIcon />
-        </IconButton>
-        <p>Members</p>
-      </MenuItem>
+      <Link to="/members">
+        <MenuItem>
+          <IconButton size="large" color="inherit">
+            <GroupIcon />
+          </IconButton>
+          <p>Members</p>
+        </MenuItem>
       </Link>
     </Menu>
   );
@@ -133,14 +133,16 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Library Management System
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
+              Library Management System
+            </Typography>
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -152,21 +154,21 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to='/'>
-            <MenuItem>
-              <IconButton size="large" color="inherit">
-                <AutoStoriesIcon />
-              </IconButton>
-              <p>Books</p>
-            </MenuItem>
+            <Link to="/">
+              <MenuItem>
+                <IconButton size="large" color="inherit">
+                  <AutoStoriesIcon />
+                </IconButton>
+                <p>Books</p>
+              </MenuItem>
             </Link>
-            <Link to='/members'>
-            <MenuItem>
-              <IconButton size="large" color="inherit">
-                <GroupIcon />
-              </IconButton>
-              <p>Members</p>
-            </MenuItem>
+            <Link to="/members">
+              <MenuItem>
+                <IconButton size="large" color="inherit">
+                  <GroupIcon />
+                </IconButton>
+                <p>Members</p>
+              </MenuItem>
             </Link>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

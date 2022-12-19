@@ -60,7 +60,9 @@ const IssueBook = () => {
     book.balance === 0;
 
   const getBooks = async () => {
-    const data = await axios.get("https://frappeprojectbackend.onrender.com/api/books/getBooks");
+    const data = await axios.get(
+      "https://frappeprojectbackend.onrender.com/api/books/getBooks"
+    );
     setBooks(data.data);
   };
 
@@ -84,9 +86,8 @@ const IssueBook = () => {
       navigate(-1);
     } catch (error) {
       console.log(error);
-      alert("Insufficient Funds")
+      alert("Insufficient Funds");
       navigate(-1);
-
     }
   };
 
@@ -100,70 +101,80 @@ const IssueBook = () => {
         <Typography className={"pageHeaders"} variant="h5">
           Available Books
         </Typography>
-        <div>
-          <TableContainer>
-            <Table stickyHeader>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="right">Title</TableCell>
-                  <TableCell>Rating</TableCell>
-                  <TableCell align="right">Quantity</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {books.map((book) => (
-                  <TableRow key={book.id}>
-                    <TableCell component="th" scope="row">
-                      {book.title}
-                    </TableCell>
-                    <TableCell align="right">{book.author}</TableCell>
-                    <TableCell>{book.rating}</TableCell>
-                    <TableCell align="right">{book.quantity}</TableCell>
+        {books.length > 0 ? (
+          <>
+            <div>
+              <TableContainer>
+                <Table stickyHeader>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell align="right">Title</TableCell>
+                      <TableCell>Rating</TableCell>
+                      <TableCell align="right">Quantity</TableCell>
+                      <TableCell align="right">Price</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {books.map((book) => (
+                      <TableRow key={book.id}>
+                        <TableCell component="th" scope="row">
+                          {book.title}
+                        </TableCell>
+                        <TableCell align="right">{book.author}</TableCell>
+                        <TableCell>{book.rating}</TableCell>
+                        <TableCell align="right">{book.quantity}</TableCell>
 
-                    <TableCell align="right">{`₹${book.price}`}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-        <div>
-          <FormControl className="mb2" style={{ marginTop: "20px" }}>
-            <TextField
-              label="Enter Movie Name"
-              name="name"
-              required
-              value={book.name}
-              onChange={updateBookField}
-              onBlur={validateForm}
-              error={errors.name.length > 0}
-              helperText={errors.name}
-              className="mb2"
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              disabled={book.name === "" ? true : false}
-              onClick={issueBookHandler}
-              className="mb2"
-            >
-              Issue Book
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              size="small"
-              onClick={()=>{
-                navigate(-1)
-              }}
-            >
-              Go Back
-            </Button>
-          </FormControl>
-        </div>
+                        <TableCell align="right">{`₹${book.price}`}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+            <div>
+              <FormControl className="mb2" style={{ marginTop: "20px" }}>
+                <TextField
+                  label="Enter Movie Name"
+                  name="name"
+                  required
+                  value={book.name}
+                  onChange={updateBookField}
+                  onBlur={validateForm}
+                  error={errors.name.length > 0}
+                  helperText={errors.name}
+                  className="mb2"
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  disabled={book.name === "" ? true : false}
+                  onClick={issueBookHandler}
+                  className="mb2"
+                >
+                  Issue Book
+                </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
+                  Go Back
+                </Button>
+              </FormControl>
+            </div>
+          </>
+        ) : (
+          <div className="noBooks">
+            <Typography variant="h6">
+              No Members! Please Add Some Members
+            </Typography>
+          </div>
+        )}
       </Container>
     </>
   );

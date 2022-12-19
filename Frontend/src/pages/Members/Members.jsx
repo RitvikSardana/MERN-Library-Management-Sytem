@@ -77,102 +77,113 @@ const Members = () => {
           </Button>
         </Link>
       </div>
-      <>
-        <div className="tableContainer">
-          <TableContainer className="tableContainer">
-            <Table stickyHeader>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="right">Email</TableCell>
-                  <TableCell>Age</TableCell>
-                  <TableCell align="right">Issued Book</TableCell>
-                  <TableCell align="right">Balance</TableCell>
-                  <TableCell>Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {users.map((user) => (
-                  <TableRow key={user.email}>
-                    <TableCell component="th" scope="row">
-                      {user.name}
-                    </TableCell>
-                    <TableCell align="right">{user.email}</TableCell>
-                    <TableCell>{user.age}</TableCell>
-                    <TableCell align="right">
-                      {user.issuedBook ? user.issuedBook : "None"}
-                    </TableCell>
-
-                    <TableCell align="right">{`₹${user.balance}`}</TableCell>
-                    <TableCell>
-                      <div className="actionsContainer">
-                        <>
-                          {/* <Link to={`/members/${user._id}`}
-                        state={{user}}
-                        > */}
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            onClick={
-                              user.issuedBook
-                                ? () => handleReturnBook(user)
-                                : () => handleNavigation(user)
-                            }
-                          >
-                            {user.issuedBook ? "Return Book" : "Issue Book"}
-                          </Button>
-                          {/* </Link> */}
-                          <Link to={`/members/editmember/${user._id}`}>
+      {
+        users.length > 0 ?
+        (
+          <>
+          <div className="tableContainer">
+            <TableContainer className="tableContainer">
+              <Table stickyHeader>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Email</TableCell>
+                    <TableCell>Age</TableCell>
+                    <TableCell align="right">Issued Book</TableCell>
+                    <TableCell align="right">Balance</TableCell>
+                    <TableCell>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {users.map((user) => (
+                    <TableRow key={user.email}>
+                      <TableCell component="th" scope="row">
+                        {user.name}
+                      </TableCell>
+                      <TableCell align="right">{user.email}</TableCell>
+                      <TableCell>{user.age}</TableCell>
+                      <TableCell align="right">
+                        {user.issuedBook ? user.issuedBook : "None"}
+                      </TableCell>
+  
+                      <TableCell align="right">{`₹${user.balance}`}</TableCell>
+                      <TableCell>
+                        <div className="actionsContainer">
+                          <>
+                            {/* <Link to={`/members/${user._id}`}
+                          state={{user}}
+                          > */}
                             <Button
                               variant="contained"
                               color="primary"
                               size="small"
+                              onClick={
+                                user.issuedBook
+                                  ? () => handleReturnBook(user)
+                                  : () => handleNavigation(user)
+                              }
                             >
-                              Edit
+                              {user.issuedBook ? "Return Book" : "Issue Book"}
                             </Button>
-                          </Link>
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            size="small"
-                            onClick={(e) => {
-                              setActiveUser(user);
-                              setOpenModal(true);
-                            }}
-                          >
-                            Delete
-                          </Button>
-                        </>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          <Modal open={openModal} onClose={(e) => setOpenModal(false)}>
-            <Card className="conf_modal">
-              <CardContent>
-                <h2>Are you sure?</h2>
-              </CardContent>
-              <CardActions className="conf_modal_actions">
-                <Button variant="contained" onClick={() => setOpenModal(false)}>
-                  Cancel
-                </Button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={deleteUser}
-                >
-                  Delete
-                </Button>
-              </CardActions>
-            </Card>
-          </Modal>
+                            {/* </Link> */}
+                            <Link to={`/members/editmember/${user._id}`}>
+                              <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                              >
+                                Edit
+                              </Button>
+                            </Link>
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              size="small"
+                              onClick={(e) => {
+                                setActiveUser(user);
+                                setOpenModal(true);
+                              }}
+                            >
+                              Delete
+                            </Button>
+                          </>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+  
+            <Modal open={openModal} onClose={(e) => setOpenModal(false)}>
+              <Card className="conf_modal">
+                <CardContent>
+                  <h2>Are you sure?</h2>
+                </CardContent>
+                <CardActions className="conf_modal_actions">
+                  <Button variant="contained" onClick={() => setOpenModal(false)}>
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={deleteUser}
+                  >
+                    Delete
+                  </Button>
+                </CardActions>
+              </Card>
+            </Modal>
+          </div>
+        </>
+        ) :
+        (
+          <div className="noBooks">
+          <Typography variant="h6">No Members! Please Add Some Members</Typography>
         </div>
-      </>
+        )
+      }
+
     </>
   );
 };
