@@ -11,7 +11,7 @@
 ![image](https://user-images.githubusercontent.com/65544983/208446443-ee583074-43d3-4733-8f0c-40183f53aaf7.png)
 
 
-**Shows error when name field is left Blank and add Book Button disable**
+**Shows error when name field is left Blank and add Book Button is disabled till the field is empty**
 
 ![image](https://user-images.githubusercontent.com/65544983/208447632-002340d1-b5ca-4813-a939-e53094fa838c.png)
 
