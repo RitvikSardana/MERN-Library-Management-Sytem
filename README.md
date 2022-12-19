@@ -88,8 +88,11 @@
 
 ![image](https://user-images.githubusercontent.com/65544983/208450797-a5196c10-e94e-4a95-9451-18a82f65bc62.png)
 
+![image](https://user-images.githubusercontent.com/65544983/208453644-3a12ea78-fede-4665-84b0-ab621be6ac0f.png)
+**On Issuing the book, all issued books will be shown on the home page**
+
 ![image](https://user-images.githubusercontent.com/65544983/208450988-8c237d5f-a747-4361-b001-90a9d1ab5c0f.png)
- 
+
  **On returning the book, user gets this message on their screen**
  
  
