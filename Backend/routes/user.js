@@ -99,7 +99,8 @@ router.patch("/returnBook", async (req, res) => {
       {
         $inc: { balance: -price },
         $set: { issuedBook: "" },
-      }
+      },
+      {new:true}
     );
     res.status(200).json("ok");
   } catch (error) {
