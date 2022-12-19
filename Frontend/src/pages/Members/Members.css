@@ -1,0 +1,36 @@
+.noBooks{
+    margin: 10px 20px;
+}
+
+.headingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 20px;
+    border-bottom: 1px solid #949494;
+    padding-bottom: 1em;
+}
+
+.tableContainer {
+    width: 100%;
+    height: 350px;
+    margin-bottom: 40px;
+}
+.actionsContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.conf_modal {
+    max-width: 400px;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    transform: (-50%, -50%);
+}
+
+.conf_modal_actions {
+    padding: 15px 20px;
+    justify-content: flex-end;
+    border-top: 1px solid #e4e4e4;
+}
