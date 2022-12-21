@@ -64,7 +64,7 @@ const IssueBook = () => {
         singleBook["title"].includes(book)
       )[0].id;
       // let
-      const data = await axios.patch(
+      const result = await axios.patch(
         "https://frappeprojectbackend.onrender.com/api/users/issuebook",
         {
           id,
@@ -73,7 +73,7 @@ const IssueBook = () => {
       );
       alert(result.data.data);
       navigate(-1);
-      
+
     } catch (error) {
       console.log(error);
       alert("Insufficient Funds");
