@@ -51,31 +51,38 @@ const AddBook = () => {
   const isInvalid = user.name === "" || user.email === "" || user.age === 0 || user.balance === 0;
 
   const getSingleBook = async () =>{
-    const singleBook = await axios.get(`https://frappeprojectbackend.onrender.com/api/users/getUser/${id}`)
-    setUser({...singleBook.data})
+    const result = await axios.get(`https://frappeprojectbackend.onrender.com/api/users/getUser/${id}`)
+    if(result.data.success){
+      setUser(result.data.data)
+    }
   }
 
   const formSubmitAdd = async (event) => {
     event.preventDefault()
     try {
-      const data = await axios.post("https://frappeprojectbackend.onrender.com/api/users/addUser",{
+      const result = await axios.post("https://frappeprojectbackend.onrender.com/api/users/addUser",{
         user:user
       })
-      navigate(-1)
+      if(result.data.success) {
+        alert(result.data.data)
+        navigate(-1)
+      }
 
     } catch (error) {
       console.log(error)
     }
-
   };
 
   const formSubmitUpdate = async (event) =>{
-
     event.preventDefault()
+
     try {
-      const data = await axios.patch(`https://frappeprojectbackend.onrender.com/api/users/getUser/${id}`,{
+      const result = await axios.patch(`https://frappeprojectbackend.onrender.com/api/users/getUser/${id}`,{
         user:user
       })
+      if(result.data.success){
+        alert(result.data.data)
+      }
       navigate(-1)
     } catch (error) {
       console.log(error)

@@ -28,7 +28,8 @@ const Members = () => {
 
   const getUsers = async () => {
     const data = await axios.get("https://frappeprojectbackend.onrender.com/api/users/getUsers");
-    setUsers(data.data);
+    setUsers(result.data.data);
+
   };
 
   useEffect(() => {
@@ -56,9 +57,9 @@ const Members = () => {
         user,
       }
     );
-    if (data.data === "ok") {
-      alert("Succesfully Returned the Book");
-      navigate(-1);
+    if (result.data.success) {
+      alert(result.data.data);
+      navigate(0);
     }
   };
   

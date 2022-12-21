@@ -71,7 +71,9 @@ const IssueBook = () => {
           bookId,
         }
       );
+      alert(result.data.data);
       navigate(-1);
+      
     } catch (error) {
       console.log(error);
       alert("Insufficient Funds");
