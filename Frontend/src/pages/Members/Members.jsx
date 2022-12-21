@@ -27,7 +27,7 @@ const Members = () => {
   const navigate = useNavigate();
 
   const getUsers = async () => {
-    const data = await axios.get("https://frappeprojectbackend.onrender.com/api/users/getUsers");
+    const result = await axios.get("https://frappeprojectbackend.onrender.com/api/users/getUsers");
     setUsers(result.data.data);
 
   };
