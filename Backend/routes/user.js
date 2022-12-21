@@ -74,7 +74,7 @@ router.patch("/issuebook", async (req, res) => {
     if (book.quantity === 1) {
       book = await Book.updateOne({ id: bookId }, { $set: { inStock: 0 } });
     }
-    console.log("ISSUE BOOK",book.quantity)
+    const savedBook = await book.save()
     let user = await User.findById(userId);
     if (user.balance - book.price > -500) { 
       let user = await User.findByIdAndUpdate(
