@@ -59,7 +59,7 @@ const Members = () => {
     );
     if (result.data.success) {
       alert(result.data.data);
-      navigate(0);
+      navigate(-1);
     }
   };
   
