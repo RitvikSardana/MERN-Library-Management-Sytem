@@ -7,7 +7,6 @@ import {
   Container,
   Button,
   TextField,
-  FormGroup,
   FormControl,
   Typography,
   Table,
@@ -17,34 +16,27 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
 
 const IssueBook = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
-  const [book, setBook] = useState({
-    name: "",
-    email: "",
-    age: 0,
-    balance: 0,
-  });
+  const [book, setBook] = useState("");
   const [errors, setErrors] = useState({
     name: "",
-    email: "",
-    age: 0,
-    balance: 0,
   });
   const [books, setBooks] = useState([]);
 
   const updateBookField = (event) => {
-    const field = event.target;
-    setBook((book) => ({ ...book, [field.name]: field.value }));
+    setBook(event.target.value);
   };
+
   const validateForm = (event) => {
     const { name, value } = event.target;
     if (["name"].includes(name)) {
-      setBook((prevProd) => ({ ...prevProd, [name]: value }));
+      setBook(value);
 
       if (!value.length) {
         setErrors({ ...errors, [name]: `${name} can't be empty` });
@@ -53,11 +45,7 @@ const IssueBook = () => {
       }
     }
   };
-  const isInvalid =
-    book.name === "" ||
-    book.email === "" ||
-    book.age === 0 ||
-    book.balance === 0;
+
 
   const getBooks = async () => {
     const data = await axios.get(
@@ -73,7 +61,7 @@ const IssueBook = () => {
   const issueBookHandler = async () => {
     try {
       const bookId = books.filter((singleBook) =>
-        singleBook["title"].includes(book.name)
+        singleBook["title"].includes(book)
       )[0].id;
       // let
       const data = await axios.patch(
@@ -102,72 +90,72 @@ const IssueBook = () => {
           Available Books
         </Typography>
         {books.length > 0 ? (
-          <>
-            <div>
-              <TableContainer>
-                <Table stickyHeader>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Name</TableCell>
-                      <TableCell align="right">Title</TableCell>
-                      <TableCell>Rating</TableCell>
-                      <TableCell align="right">Quantity</TableCell>
-                      <TableCell align="right">Price</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {books.map((book) => (
-                      <TableRow key={book.id}>
-                        <TableCell component="th" scope="row">
-                          {book.title}
-                        </TableCell>
-                        <TableCell align="right">{book.author}</TableCell>
-                        <TableCell>{book.rating}</TableCell>
-                        <TableCell align="right">{book.quantity}</TableCell>
+        <>
+        <div>
+          <TableContainer>
+            <Table stickyHeader>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell align="right">Title</TableCell>
+                  <TableCell>Rating</TableCell>
+                  <TableCell align="right">Quantity</TableCell>
+                  <TableCell align="right">Price</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {books.map((book) => (
+                  <TableRow key={book.id}>
+                    <TableCell component="th" scope="row">
+                      {book.title}
+                    </TableCell>
+                    <TableCell align="right">{book.author}</TableCell>
+                    <TableCell>{book.rating}</TableCell>
+                    <TableCell align="right">{book.quantity}</TableCell>
 
-                        <TableCell align="right">{`₹${book.price}`}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
-            <div>
-              <FormControl className="mb2" style={{ marginTop: "20px" }}>
-                <TextField
-                  label="Enter Movie Name"
-                  name="name"
-                  required
-                  value={book.name}
-                  onChange={updateBookField}
-                  onBlur={validateForm}
-                  error={errors.name.length > 0}
-                  helperText={errors.name}
-                  className="mb2"
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  disabled={book.name === "" ? true : false}
-                  onClick={issueBookHandler}
-                  className="mb2"
-                >
-                  Issue Book
-                </Button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                  onClick={() => {
-                    navigate(-1);
-                  }}
-                >
-                  Go Back
-                </Button>
-              </FormControl>
-            </div>
-          </>
+                    <TableCell align="right">{`₹${book.price}`}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <div>
+          <FormControl className="mb2" style={{ marginTop: "20px" }}>
+            <TextField
+              label="Enter a Movie Name From Above"
+              name="name"
+              required
+              value={book}
+              onChange={updateBookField}
+              onBlur={validateForm}
+              error={errors.name.length > 0}
+              helperText={errors.name}
+              className="mb2"
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              disabled={book === "" ? true : false}
+              onClick={issueBookHandler}
+              className="mb2"
+            >
+              Issue Book
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Go Back
+            </Button>
+          </FormControl>
+        </div>
+      </>
         ) : (
           <div className="noBooks">
             <Typography variant="h6">
