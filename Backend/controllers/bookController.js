@@ -22,7 +22,7 @@ const book_addBook_post = async (req, res) => {
     res.status(200).json(savedBook);
   } catch (err) {
     console.log(err);
-    res.status(401).json(err);
+    res.status(500).json(err);
   }
 };
 
@@ -32,7 +32,7 @@ const book_getBooks_get = async (req, res) => {
     res.status(200).json(books);
   } catch (error) {
     console.log(error);
-    res.status(401).json(error);
+    res.status(500).json(error);
   }
 };
 
@@ -45,7 +45,7 @@ const book_getIssuedBook_get = async (req, res) => {
     res.status(200).json(issuedBooks);
   } catch (error) {
     console.log(error);
-    res.status(401).json(error);
+    res.status(500).json(error);
   }
 };
 
@@ -58,7 +58,7 @@ const book_getSingleBook_get = async (req, res) => {
     res.status(200).json(book);
   } catch (error) {
     console.log(error);
-    res.status(401).json(error);
+    res.status(500).json(error);
   }
 };
 
@@ -74,7 +74,7 @@ const book_updateBook_patch = async (req, res) => {
     res.status(200).json(book);
   } catch (error) {
     console.log(error);
-    res.status(401).json(error);
+    res.status(500).json(error);
   }
 };
 
@@ -85,7 +85,7 @@ const book_deleteBook_delete = async (req, res) => {
     res.status(200).json(book);
   } catch (error) {
     console.log(error);
-    res.status(401).json(error);
+    res.status(500).json(error);
   }
 };
 
