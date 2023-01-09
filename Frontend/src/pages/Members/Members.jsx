@@ -16,6 +16,7 @@ import {
   CardActions,
   Typography,
 } from "@mui/material";
+
 import "./Members.css";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -27,9 +28,10 @@ const Members = () => {
   const navigate = useNavigate();
 
   const getUsers = async () => {
-    const result = await axios.get("https://frappeprojectbackend.onrender.com/api/users/getUsers");
+    const result = await axios.get(
+      "https://frappeprojectbackend.onrender.com/api/users/getUsers"
+    );
     setUsers(result.data.data);
-
   };
 
   useEffect(() => {
@@ -50,7 +52,6 @@ const Members = () => {
   };
 
   const handleReturnBook = async (user) => {
-    console.log(user);
     const result = await axios.patch(
       "https://frappeprojectbackend.onrender.com/api/users/returnBook",
       {
@@ -59,11 +60,15 @@ const Members = () => {
     );
     if (result.data.success) {
       alert(result.data.data);
-      navigate(-1);
+      navigate(0);
     }
   };
-  
+
   const handleNavigation = (user) => {
+    navigate(`/members/issuebook/${user._id}`);
+  };
+
+  const handleMemberNavigation = (user) => {
     navigate(`/members/${user._id}`);
   };
 
@@ -78,10 +83,8 @@ const Members = () => {
           </Button>
         </Link>
       </div>
-      {
-        users.length > 0 ?
-        (
-          <>
+      {users.length > 0 ? (
+        <>
           <div className="tableContainer">
             <TableContainer className="tableContainer">
               <Table stickyHeader>
@@ -98,7 +101,11 @@ const Members = () => {
                 <TableBody>
                   {users.map((user) => (
                     <TableRow key={user.email}>
-                      <TableCell component="th" scope="row">
+                      <TableCell
+                        onClick={() => handleMemberNavigation(user)}
+                        component="th"
+                        scope="row"
+                      >
                         {user.name}
                       </TableCell>
                       <TableCell align="right">{user.email}</TableCell>
@@ -106,7 +113,7 @@ const Members = () => {
                       <TableCell align="right">
                         {user.issuedBook ? user.issuedBook : "None"}
                       </TableCell>
-  
+
                       <TableCell align="right">{`₹${user.balance}`}</TableCell>
                       <TableCell>
                         <div className="actionsContainer">
@@ -155,14 +162,17 @@ const Members = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-  
+
             <Modal open={openModal} onClose={(e) => setOpenModal(false)}>
               <Card className="conf_modal">
                 <CardContent>
                   <h2>Are you sure?</h2>
                 </CardContent>
                 <CardActions className="conf_modal_actions">
-                  <Button variant="contained" onClick={() => setOpenModal(false)}>
+                  <Button
+                    variant="contained"
+                    onClick={() => setOpenModal(false)}
+                  >
                     Cancel
                   </Button>
                   <Button
@@ -177,14 +187,13 @@ const Members = () => {
             </Modal>
           </div>
         </>
-        ) :
-        (
-          <div className="noBooks">
-          <Typography variant="h6">No Members! Please Add Some Members</Typography>
+      ) : (
+        <div className="noBooks">
+          <Typography variant="h6">
+            No Members! Please Add Some Members
+          </Typography>
         </div>
-        )
-      }
-
+      )}
     </>
   );
 };

@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema(
     balance: {
       type: Number,
     },
+    previouslyIssuedBooks: {
+      type: Array,
+    },
   },
   { timestamps: true }
 );

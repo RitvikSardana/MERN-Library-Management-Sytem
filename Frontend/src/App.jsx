@@ -5,6 +5,7 @@ import {BrowserRouter ,Routes,Route} from 'react-router-dom'
 import Members from "./pages/Members/Members";
 import AddMember from "./pages/AddMember/AddMember";
 import IssueBook from "./pages/IssueBook/IssueBook";
+import MemberLogs from "./pages/MemberLogs/MemberLogs";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
           <Route path = "/book/:id" element = {<AddBook />} />
           <Route path="/addBook" element = {<AddBook />} />
           <Route path="/members" element = {<Members />} />
-          <Route path="/members/:id" element = {<IssueBook />} />
+          <Route path = "/members/:id" element = {<MemberLogs />} />
+          <Route path="/members/issuebook/:id" element = {<IssueBook />} />
           <Route path = "/members/editmember/:id" element = {<AddMember />} />
           <Route path="/addMember" element = {<AddMember />} />
         </Routes>

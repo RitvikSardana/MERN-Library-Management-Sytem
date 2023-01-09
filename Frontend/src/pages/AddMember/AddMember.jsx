@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 
-const AddBook = () => {
+const AddMember = () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -179,4 +179,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default AddMember;

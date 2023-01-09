@@ -75,17 +75,17 @@ const user_deleteUser_delete = async (req, res) => {
 const user_issueBook_patch = async (req, res) => {
   const { bookId, id: userId } = req.body;
   try {
-    let due = false;
 
     let book = await Book.findOneAndUpdate(
       { id: bookId, quantity: { $gt: 0 } },
       { $inc: { quantity: -1 } }
     );
-    if (book.quantity === 1) {
-      book = await Book.updateOne({ id: bookId }, { $set: { inStock: 0 } });
+    if (book == null) {
+      return res.status(200).json({ success: false, data: "Out Of Stock" });
     }
 
     const savedBook = await book.save();
+    
     let user = await User.findById(userId);
     if (user.balance - book.price > -500) {
       let user = await User.findByIdAndUpdate(
@@ -119,12 +119,12 @@ const user_returnBook_patch = async (req, res) => {
       { $inc: { quantity: +1 } }
     );
     let { price } = book;
-    console.log("RETURN", book.quantity);
     const user = await User.findOneAndUpdate(
       { _id: id, balance: { $gte: -500 } },
       {
         $inc: { balance: -price },
         $set: { issuedBook: "" },
+        $push:{previouslyIssuedBooks:book}
       }
     );
     res
