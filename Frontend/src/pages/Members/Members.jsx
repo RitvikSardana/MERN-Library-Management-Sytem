@@ -105,6 +105,7 @@ const Members = () => {
                         onClick={() => handleMemberNavigation(user)}
                         component="th"
                         scope="row"
+                        style={{"textDecoration":"underline","cursor":"pointer"}}
                       >
                         {user.name}
                       </TableCell>
