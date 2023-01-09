@@ -102,7 +102,7 @@ const MemberLogs = () => {
                   <TableCell align="right">
                     {user.issuedBook ? user.issuedBook : "None"}
                   </TableCell>
-                  <TableCell align="right">{user.balance}</TableCell>
+                  <TableCell align="right">{`₹${user.balance}`}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
