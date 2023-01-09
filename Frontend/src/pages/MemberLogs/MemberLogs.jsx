@@ -51,7 +51,7 @@ const MemberLogs = () => {
 
   const getSingleMember = async () => {
     const result = await axios.get(
-      `http://localhost:1337/api/users/getUser/${id}`
+      `https://frappeprojectbackend.onrender.com/api/users/getUser/${id}`
     );
     // console.log(result.data.data);
     if (result.data.success) {
