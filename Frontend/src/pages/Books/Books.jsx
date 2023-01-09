@@ -43,7 +43,7 @@ const Books = () => {
 
   useEffect(() => {
     getBooks();
-    getIssuedBooks();
+    // getIssuedBooks();
   }, []);
 
   const deleteBook = async () => {
@@ -160,7 +160,7 @@ const Books = () => {
         </div>
       )}
 
-      {/* For Borrowed Books */}
+      {/* For Borrowed Books
       <div className="headingContainer">
         <Typography variant="h5">Issued Books</Typography>
       </div>
@@ -195,7 +195,7 @@ const Books = () => {
         <div className="noBooks">
           <Typography variant="h6">No books issued!</Typography>
         </div>
-      )}
+      )} */}
     </>
   );
 };
