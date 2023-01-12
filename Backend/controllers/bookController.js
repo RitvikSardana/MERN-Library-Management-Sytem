@@ -10,7 +10,7 @@ const book_addBook_post = async (req, res) => {
     let data = response.data.message;
     data = data.slice(0, 1)[0];
     const book = new Book({
-      id: data.isbn,
+      id: data?.isbn || data?.isbn13,
       rating: data.average_rating,
       title: data.title,
       author: data.authors,
